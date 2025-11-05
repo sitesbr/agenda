@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grade de Horário –  Jiu Jitsu Guarulhos</title>
+  <meta name="description" content="Grade de aulas da  Jiu Jitsu Guarulhos. Versão responsiva com Tailwind CSS, acessível e fiel à arte oficial." />
+  <meta property="og:title" content="Grade de Horário – Alliance Jiu Jitsu Guarulhos" />
+  <meta property="og:description" content="Grade de aulas NO GI, Iniciante, Intermediário, Avançado, Little Eagle, Weagle Warrior e Eagle Youth." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <link rel="icon" href="https://alliancejjguarulhos.com.br/assets/images/brand/logo-alliance-footer.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ["Inter", "system-ui", "-apple-system", "Segoe UI", "Roboto", "Arial", "sans-serif"] },
+          colors: {
+            brand: { 
+              primary: '#FFC21B', // Amarelo Alliance
+              black: '#111111',   // Preto Alliance
+              grayBg: '#F7F7F8',  // Fundo de áreas
+              border: '#E5E7EB'   // Hairline
+            },
+            accent: {
+              'blue-50': '#EAF2FF','blue-200': '#CFE0FF',
+              'green-50': '#EAF8F0','green-200': '#CFECDD',
+              'purple-50': '#F1E9FF','purple-200': '#E0D3FF',
+              'rose-50': '#FFE8EC','rose-200': '#FFD1DA'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    /* ======= TABELA DESKTOP ======= */
+    th.sticky-header { position: sticky; top: 0; z-index: 20; }
+    th.sticky-col, td.sticky-col { position: sticky; left: 0; z-index: 15; background: white; }
+    th.corner { z-index: 30; }
+
+    @media (min-width:1024px){
+      .schedule-desktop{ width:100%; border-collapse:separate; border-spacing:0; table-layout:fixed; }
+      .schedule-desktop thead th{
+        position:sticky; top:0; 
+        background:#FFC21B; /* brand-yellow */
+        color:#111111; /* brand-black */
+        font-weight:800; text-transform:uppercase;
+        padding:12px 10px; 
+        border-bottom:2px solid #111111; /* Linha preta 2px */
+        z-index:30;
+      }
+      .schedule-desktop thead th:first-child{ left:0; z-index:40; }
+      .schedule-desktop tbody th{ /* coluna de horários */
+        position:sticky; left:0; background:#F7F7F8; color:#111111; font-weight:700;
+        border-right:1px solid #E5E7EB; z-index:25; padding:14px 12px;
+      }
+      .schedule-desktop td{
+        background:#FFFFFF; border-bottom:1px solid #E5E7EB; border-right:1px solid #F3F4F6;
+        padding:14px 12px; vertical-align:top; text-align: center;
+      }
+      .schedule-desktop tr:hover td{ background:#FAFAFA; }
+      a:focus-visible, button:focus-visible, select:focus-visible, .badge-base:focus-visible{
+        outline:2px solid rgba(255,194,27,.6); outline-offset:2px;
+      }
+    }
+
+    /* ======= BADGES/PILLS ======= */
+    .badge-base {
+      display: inline-block; padding: 4px 10px; border-radius: 9999px;
+      font-weight: 600; font-size: 13px; line-height: 1.15; letter-spacing: 0.01em;
+      margin: 2px; border: 1px solid #E5E7EB; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+    }
+    .badge-ini  { color:#111111; background:#EAF8F0; border-color:#CFECDD; }
+    .badge-inter{ color:#111111; background:#EAF2FF; border-color:#CFE0FF; }
+    .badge-adv  { color:#FFFFFF; background:#111111; border-color:#111111; }
+    .badge-nogi { color:#111111; background:#FFC21B; border-color:#FFC21B; }
+    .badge-kids { color:#111111; background:#F1E9FF; border-color:#E0D3FF; }
+    .badge-fem  { color:#111111; background:#FFE8EC; border-color:#FFD1DA; }
+    .badge-default{ color:#111111; background:#F7F7F8; border-color:#E5E7EB; }
+  </style>
+</head>
+<body class="bg-brand-grayBg text-brand-black font-sans">
+
+  <!-- HEADER ESCURO -->
+  <header class="bg-[#0b0b0b] text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex items-center justify-between">
+        <a href="https://alliancejjguarulhos.com.br" class="inline-flex items-center" aria-label="Voltar para a página inicial">
+          <img src="/assets/images/brand/logo-alliance-white-200x70.png" alt="Alliance Jiu Jitsu Guarulhos" class="h-8 sm:h-9 w-auto" />
+        </a>
+        <a href="https://alliancejjguarulhos.com.br" 
+           class="inline-flex items-center rounded-xl px-4 py-2 text-sm font-semibold bg-[#333333] text-[#FFC21B] hover:bg-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#FFC21B]" 
+           aria-label="Voltar ao site da Alliance Guarulhos">
+          ← Voltar ao site
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Separador brand -->
+  <div class="h-2 bg-brand-primary"></div>
+
+  <main class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+    <!-- HERO/TÍTULO -->
+    <section class="mb-4 md:mb-6">
+      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-black">Grade de Horário <span class="text-brand-black/60">– Guarulhos</span></h1>
+      <p class="mt-1 text-sm md:text-base text-brand-black/80">Página responsiva inspirada na arte oficial. Em celulares, use o seletor de dias.</p>
+    </section>
+
+    <!-- Legenda -->
+    <section class="mb-4">
+      <h2 class="sr-only">Legenda de Aulas</h2>
+      <div class="flex flex-wrap items-center gap-2 lg:gap-3 text-xs">
+        <span class="badge-base badge-ini">Iniciante</span>
+        <span class="badge-base badge-inter">Intermediário</span>
+        <span class="badge-base badge-adv">Avançado</span>
+        <span class="badge-base badge-nogi">NO GI</span>
+        <span class="badge-base badge-kids">Kids/Youth</span>
+        <span class="badge-base badge-fem">Feminino</span>
+      </div>
+    </section>
+
+    <div class="mt-6">
+      <!-- MOBILE -->
+      <div class="block md:hidden">
+        <div class="rounded-2xl shadow-sm ring-1 ring-brand-border bg-white p-4">
+          <label for="day-selector" class="block text-sm font-medium text-brand-black mb-2">Selecione o dia:</label>
+          <select id="day-selector" class="w-full p-2 border border-brand-border rounded-xl focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/50 mb-4 bg-white">
+            <option value="segunda">Segunda-feira</option>
+            <option value="terca">Terça-feira</option>
+            <option value="quarta">Quarta-feira</option>
+            <option value="quinta">Quinta-feira</option>
+            <option value="sexta">Sexta-feira</option>
+            <option value="sabado">Sábado</option>
+          </select>
+          <div id="mobile-schedule" class="space-y-3" aria-live="polite" aria-atomic="true"></div>
+        </div>
+      </div>
+
+      <!-- DESKTOP -->
+      <div class="hidden md:block overflow-x-auto rounded-2xl shadow-sm ring-1 ring-brand-border bg-white">
+        <table class="schedule-desktop min-w-[960px] w-full table-fixed font-sans" role="table" aria-label="Grade semanal">
+          <colgroup>
+            <col class="w-24 bg-white">
+            <col span="6" class="w-[14.28%] bg-white">
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col" class="corner sticky-header sticky-col text-left px-3 py-3 text-xs font-bold uppercase tracking-wider">Horário</th>
+              <th scope="col" class="sticky-header text-center px-3 py-3 text-xs font-bold uppercase tracking-wider">2ª Feira</th>
+              <th scope="col" class="sticky-header text-center px-3 py-3 text-xs font-bold uppercase tracking-wider">3ª Feira</th>
+              <th scope="col" class="sticky-header text-center px-3 py-3 text-xs font-bold uppercase tracking-wider">4ª Feira</th>
+              <th scope="col" class="sticky-header text-center px-3 py-3 text-xs font-bold uppercase tracking-wider">5ª Feira</th>
+              <th scope="col" class="sticky-header text-center px-3 py-3 text-xs font-bold uppercase tracking-wider">6ª Feira</th>
+              <th scope="col" class="sticky-header text-center px-3 py-3 text-xs font-bold uppercase tracking-wider">Sábado</th>
+            </tr>
+          </thead>
+          <tbody id="desktop-schedule-body" class="divide-y divide-gray-100"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="mt-4 text-center md:text-left">
+      <p class="text-xs text-gray-500">Horários e modalidades sujeitos a alteração. Para informações oficiais, consulte o site ou entre em contato com a recepção.</p>
+    </div>
+  </main>
+
+  <script>
+    // ======= DADOS =======
+    const scheduleData = {
+      segunda: [
+        { time: '06:00', classes: ['Intermediário'] },
+        { time: '07:00', classes: ['Avançado', 'Iniciante'] },
+        { time: '09:30', classes: ['Weagle Warrior 8 a 12 anos'] },
+        { time: '12:10', classes: ['Intermediário', 'Iniciante'] },
+        { time: '16:30', classes: ['Weagle Warrior 8 a 12 anos'] },
+        { time: '18:30', classes: ['Intermediário', 'Iniciante'] },
+        { time: '19:30', classes: ['Eagle Youth 12 a 15 anos', 'Iniciante', 'Avançado'] },
+        { time: '20:30', classes: ['Iniciante', 'Intermediário'] }
+      ],
+      terca: [
+        { time: '06:00', classes: ['Avançado', 'Iniciante'] },
+        { time: '07:00', classes: ['Intermediário', 'Iniciante'] },
+        { time: '09:30', classes: ['Little Eagle 5 a 7 anos'] },
+        { time: '12:10', classes: ['Avançado', 'Iniciante'] },
+        { time: '16:30', classes: ['Little Eagle 5 a 7 anos'] },
+        { time: '18:30', classes: ['Avançado'] },
+        { time: '19:30', classes: ['Intermediário'] },
+        { time: '20:00', classes: ['Feminino'] },
+        { time: '20:30', classes: ['Avançado', 'Intermediário'] }
+      ],
+      quarta: [
+        { time: '06:00', classes: ['Intermediário'] },
+        { time: '07:00', classes: ['Avançado', 'Iniciante'] },
+        { time: '09:30', classes: ['Weagle Warrior 8 a 12 anos'] },
+        { time: '12:10', classes: ['Intermediário', 'Iniciante'] },
+        { time: '16:30', classes: ['Weagle Warrior 8 a 12 anos'] },
+        { time: '18:30', classes: ['Avançado', 'Iniciante'] },
+        { time: '19:30', classes: ['Eagle Youth 12 a 15 anos', 'Iniciante', 'Avançado'] },
+        { time: '20:30', classes: ['Iniciante', 'Intermediário'] }
+      ],
+      quinta: [
+        { time: '06:00', classes: ['Avançado', 'Iniciante'] },
+        { time: '07:00', classes: ['Intermediário', 'Iniciante'] },
+        { time: '09:30', classes: ['Little Eagle 5 a 7 anos'] },
+        { time: '12:10', classes: ['Avançado', 'Iniciante'] },
+        { time: '16:30', classes: ['Little Eagle 5 a 7 anos'] },
+        { time: '18:30', classes: ['Avançado', 'Iniciante'] },
+        { time: '19:30', classes: ['Intermediário'] },
+        { time: '20:00', classes: ['Feminino'] },
+        { time: '20:30', classes: ['Avançado', 'Intermediário'] }
+      ],
+      sexta: [
+        { time: '06:00', classes: ['Intermediário'] },
+        { time: '07:00', classes: ['Avançado', 'NO GI', 'Iniciante'] },
+        { time: '09:30', classes: ['Weagle Warrior 8 a 12 anos'] },
+        { time: '12:10', classes: ['Intermediário', 'NO GI', 'Iniciante'] },
+        { time: '16:30', classes: ['Weagle Warrior 8 a 12 anos'] },
+        { time: '18:30', classes: ['Intermediário'] },
+        { time: '19:30', classes: ['Eagle Youth 12 a 15 anos', 'Avançado'] },
+        { time: '20:30', classes: ['Iniciante', 'Intermediário'] }
+      ],
+      sabado: [
+        { time: '09:30', classes: ['NO GI 09:30–10:30'] },
+        { time: '10:30', classes: ['Intermediário / Avançado'] }
+      ]
+    };
+
+    const days = ['segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado'];
+    const allTimes = [...new Set(Object.values(scheduleData).flat().map(item => item.time))].sort();
+
+    // ======= HELPER VISUAL (corrigido) =======
+    function getClassBadge(className) {
+      const baseClasses = 'badge-base';
+      let specificClasses = 'badge-default';
+      let text = className;
+
+      // Casos compostos devem vir primeiro
+      if (className.includes('Intermediário / Avançado')) {
+        specificClasses = 'badge-inter';
+        text = 'Intermediário / Avançado';
+      } else if (className.includes('NO GI')) {
+        specificClasses = 'badge-nogi';
+        if (className.includes('09:30') && className.includes('10:30')) {
+          text = 'NO GI 09:30–10:30';
+        }
+      } else if (className.includes('Feminino')) {
+        specificClasses = 'badge-fem';
+      } else if (className.includes('Eagle') || className.includes('Warrior') || className.includes('Little')) {
+        specificClasses = 'badge-kids';
+      } else if (className.includes('Avançado')) {
+        specificClasses = 'badge-adv';
+      } else if (className.includes('Intermediário')) {
+        specificClasses = 'badge-inter';
+      } else if (className.includes('Iniciante')) {
+        specificClasses = 'badge-ini';
+      }
+
+      return { css: `${baseClasses} ${specificClasses}`, text };
+    }
+
+    // ======= RENDER MOBILE =======
+    function renderMobileSchedule(day) {
+      const container = document.getElementById('mobile-schedule');
+      container.innerHTML = '';
+      const daySchedule = scheduleData[day] || [];
+
+      if (daySchedule.length === 0) {
+        container.innerHTML = '<p class="text-sm text-gray-500 text-center">Nenhuma aula programada para este dia.</p>';
+        return;
+      }
+
+      daySchedule.forEach(item => {
+        const timeBlock = document.createElement('div');
+        timeBlock.className = 'bg-white rounded-xl border border-brand-border p-4 shadow-sm';
+
+        const timeHeader = document.createElement('div');
+        timeHeader.className = 'font-bold text-gray-800 mb-2';
+        timeHeader.textContent = item.time;
+        timeBlock.appendChild(timeHeader);
+
+        const classesContainer = document.createElement('div');
+        classesContainer.className = 'flex flex-wrap gap-2';
+
+        item.classes.forEach(cls => {
+          const badgeInfo = getClassBadge(cls);
+          const badge = document.createElement('span');
+          badge.className = badgeInfo.css;
+          badge.textContent = badgeInfo.text;
+          classesContainer.appendChild(badge);
+        });
+
+        timeBlock.appendChild(classesContainer);
+        container.appendChild(timeBlock);
+      });
+    }
+
+    // ======= RENDER DESKTOP =======
+    function renderDesktopSchedule() {
+      const tbody = document.getElementById('desktop-schedule-body');
+      tbody.innerHTML = '';
+
+      allTimes.forEach(time => {
+        const tr = document.createElement('tr');
+
+        const thTime = document.createElement('th');
+        thTime.scope = 'row';
+        thTime.className = 'sticky-col text-left px-3 py-3 text-sm font-semibold text-gray-700 bg-brand-grayBg';
+        thTime.textContent = time;
+        tr.appendChild(thTime);
+
+        days.forEach(day => {
+          const tdDay = document.createElement('td');
+          tdDay.className = 'px-3 py-3';
+
+          const scheduleItem = (scheduleData[day] || []).find(item => item.time === time);
+          if (scheduleItem) {
+            const classesContainer = document.createElement('div');
+            classesContainer.className = 'flex flex-col gap-1 items-center justify-center';
+
+            scheduleItem.classes.forEach(cls => {
+              const badgeInfo = getClassBadge(cls);
+              const badge = document.createElement('span');
+              badge.className = badgeInfo.css;
+              badge.textContent = badgeInfo.text;
+              classesContainer.appendChild(badge);
+            });
+            tdDay.appendChild(classesContainer);
+          }
+
+          tr.appendChild(tdDay);
+        });
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    // ======= INIT =======
+    document.addEventListener('DOMContentLoaded', function() {
+      const daySelector = document.getElementById('day-selector');
+      renderMobileSchedule(daySelector.value);
+      daySelector.addEventListener('change', function(){ renderMobileSchedule(this.value); });
+      renderDesktopSchedule();
+    });
+  </script>
+  
+  <footer class="mt-8 border-t border-brand-border bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-sm text-gray-600 flex items-center justify-between">
+      <span>Alliance Jiu Jitsu Guarulhos</span>
+      <a href="https://alliancejjguarulhos.com.br" class="underline hover:no-underline">alliancejjguarulhos.com.br</a>
+    </div>
+  </footer>
+</body>
+</html>
